@@ -1,0 +1,27 @@
+{
+  "name": "mark-api",
+  "version": "1.0.0",
+  "description": "Api do gerenciador de tarefas",
+  "main": "server.js",
+  "author": "Fernando Papito",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node src/server.js",
+    "typeorm": "node_modules/typeorm/cli.js",
+    "db:init": "npx typeorm migration:run",
+    "db:drop": "npx typeorm schema:drop"
+  },
+  "dependencies": {
+    "better-sqlite3": "8.2.0",
+    "cors": "2.8.5",
+    "dotenv": "16.0.3",
+    "express": "4.17.1",
+    "express-async-errors": "3.1.1",
+    "handlebars": "4.7.7",
+    "reflect-metadata": "0.1.13",
+    "typeorm": "0.2.31",
+    "uuid": "8.3.2",
+    "yup": "0.32.9"
+  }
+}

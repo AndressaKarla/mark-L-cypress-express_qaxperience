@@ -1,0 +1,15 @@
+{
+  "name": "mark-web",
+  "version": "1.0.0",
+  "description": "Interface gráfica do gerenciador de tarefas",
+  "main": "index.js",
+  "author": "Fernando Papito",
+  "license": "MIT",
+  "dependencies": {
+    "http-server": "^14.1.1"
+  },
+  "scripts": {
+    "start": "http-server --port 8080",
+    "dev": "http-server --port 8080"
+  }
+}

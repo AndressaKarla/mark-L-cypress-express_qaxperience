@@ -1,0 +1,14 @@
+{
+    "tarefa_duplicada": {
+        "name": "Estudar Javascript",
+        "is_done": false
+    },
+    "tarefa_atualizacao": {
+        "name": "Pagar contas de consumo",
+        "is_done": false
+    },
+    "tarefa_exclusao": {
+        "name": "Estudar Javascript",
+        "is_done": false
+    }
+}

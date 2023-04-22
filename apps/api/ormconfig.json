@@ -1,0 +1,9 @@
+{
+  "type": "better-sqlite3",
+  "database": "./src/database/database.sqlite",
+  "migrations": ["./src/database/migrations/**.js"],
+  "entities": ["./src/models/**.js"],
+  "cli": {
+    "migrationsDir": "./src/database/migrations"
+  }
+}
