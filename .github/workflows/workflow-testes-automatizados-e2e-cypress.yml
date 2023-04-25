@@ -33,7 +33,27 @@ jobs:
       - name: Passo 1 - Obter cópia do código-fonte do repositório
         uses: actions/checkout@v3.3.0
         
-      - name: Passo 2 - Instalar dependências cypress, Executar testes em modo headless e Gravar os resultados dos testes
+      - name: Passo 2 - Instalar dependências Mark L (app > api)
+        run: |
+          cd "/__w/mark-L-cypress-express_qaxperience/mark-L-cypress-express_qaxperience/apps/api"
+          yarn install
+          
+      - name: Passo 3 - Executar Mark L (app > api) em um ambiente de desenvolvimento local
+        run: |
+          cd "/__w/mark-L-cypress-express_qaxperience/mark-L-cypress-express_qaxperience/apps/api" 
+          yarn dev
+        
+      - name: Passo 4 - Instalar dependências Mark L (app > web)
+        run: |
+          cd "/__w/mark-L-cypress-express_qaxperience/mark-L-cypress-express_qaxperience/apps/web" 
+          yarn install
+        
+      - name: Passo 5 - Executar Mark L (app > web) em um ambiente de desenvolvimento local
+        run: |
+          cd "/__w/mark-L-cypress-express_qaxperience/mark-L-cypress-express_qaxperience/apps/web" 
+          yarn dev
+        
+      - name: Passo 6 - Instalar dependências cypress, Executar testes em modo headless e Gravar os resultados dos testes
         uses: cypress-io/github-action@v5.0.8
         with:
           # instalar dependências 
@@ -47,7 +67,7 @@ jobs:
           # variável de ambiente padrão para autorização, identificado automaticamente por meio da conta do GitHub
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Passo 3 - Armazenar os resultados dos testes em vídeos
+      - name: Passo 7 - Armazenar os resultados dos testes em vídeos
         uses: actions/upload-artifact@v3
         if: ${{ always() }}
         with:
@@ -56,7 +76,7 @@ jobs:
           # armazena por 30 dias
           retention-days: 30
 
-      - name: Passo 4 - Armazenar os resultados dos testes que falharam em screenshots
+      - name: Passo 8 - Armazenar os resultados dos testes que falharam em screenshots
         uses: actions/upload-artifact@v3
         if: ${{ failure() }}
         with:
