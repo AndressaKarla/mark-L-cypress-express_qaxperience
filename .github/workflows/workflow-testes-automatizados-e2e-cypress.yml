@@ -1,0 +1,86 @@
+name: Pipeline Testes Automatizados E2E (Ponta a Ponta) Cypress
+
+# executa o workflow toda vez que for realizado um push ou pull-request no repositório
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+    
+  # permite também executar esse workflow manualmente na aba "Actions" do GitHub
+  workflow_dispatch:
+    # entrada de dados
+    inputs:
+      spec: 
+        description: Executar testes em modo headless por spec (suíte de testes) 
+        # executar por padrão todas as suítes de testes presentes na pasta "e2e" 
+        default: cypress/e2e/* 
+
+jobs:
+  # electron - utilizado para garantir que os testes funcionais são executados com sucesso
+  testes-automatizados-e2e-cypress-electron:
+    # tempo máximo para execução de uma tarefa antes que o GitHub a cancele automaticamente
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    
+    # template cypress com todas as dependências necessárias para executar os testes
+    container:
+      image: cypress/browsers:node18.12.0-chrome103-ff107
+      # usuário com perfil administrador
+      options: --user 1001
+      
+    steps:
+      - name: Passo 1 - Obter cópia do código-fonte do repositório
+        uses: actions/checkout@v3.3.0
+        
+      - name: Passo 2 - Instalar dependências Mark L (app > api)
+        with:
+          working-directory: app/api
+          run: yarn install
+          
+      - name: Passo 3 - Executar Mark L (app > api) em um ambiente de desenvolvimento local
+        with:
+          working-directory: app/api
+          run: yarn dev
+        
+      - name: Passo 4 - Instalar dependências Mark L (app > web)
+        with:
+          working-directory: app/web
+          run: yarn install
+        
+      - name: Passo 5 - Executar Mark L (app > web) em um ambiente de desenvolvimento local
+        with:
+          working-directory: app/web
+          run: yarn dev
+        
+      - name: Passo 6 - Instalar dependências cypress, Executar testes em modo headless e Gravar os resultados dos testes
+        uses: cypress-io/github-action@v5.0.8
+        with:
+          # instalar dependências 
+          install-command: yarn install
+          browser: electron
+          # gravar resultados dos testes 
+          record: true
+          # executar testes em modo headless
+          spec: ${{ github.event.inputs.spec }} # configurado em "on > workflow_dispatch > inputs > spec"
+        env:
+          # variável de ambiente padrão para autorização, identificado automaticamente por meio da conta do GitHub
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Passo 7 - Armazenar os resultados dos testes em vídeos
+        uses: actions/upload-artifact@v3
+        if: ${{ always() }}
+        with:
+          name: cypress-videos-electron
+          path: cypress/videos
+          # armazena por 30 dias
+          retention-days: 30
+
+      - name: Passo 8 - Armazenar os resultados dos testes que falharam em screenshots
+        uses: actions/upload-artifact@v3
+        if: ${{ failure() }}
+        with:
+          name: cypress-screenshots-electron
+          path: cypress/screenshots
+          # armazena por 30 dias
+          retention-days: 30
