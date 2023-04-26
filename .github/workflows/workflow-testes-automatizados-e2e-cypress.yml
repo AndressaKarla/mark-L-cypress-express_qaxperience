@@ -46,13 +46,13 @@ jobs:
       - name: Passo 4 - Instalar dependências cypress, Executar testes em modo headless e Gravar os resultados dos testes
         uses: cypress-io/github-action@v5.0.8
         with:
-          # instalar dependências 
-          install-command: yarn install
           browser: electron
           start: |
             yarn --cwd ./apps/api dev & sleep 10
             yarn --cwd ./apps/web dev & sleep 10
           wait-on: 'http://localhost:8080'
+          # instalar dependências 
+          install-command: yarn --cwd ../.. install
           # executar testes em modo headless
           spec: ${{ github.event.inputs.spec }} # configurado em "on > workflow_dispatch > inputs > spec"
         env:
