@@ -54,7 +54,7 @@ jobs:
           yarn --cwd ./apps/web start &
           
           # aguardar até que os servidores estejam prontos para acessar
-          while ! curl -sSf http://localhost:3333/healthcheck > /dev/null || ! curl -sSf http://localhost:8080 > /dev/null; do sleep 1; done
+          while ! curl -sSf http://localhost:8080 > /dev/null; do sleep 1; done
           
       - name: Passo 5 - Instalar dependências cypress, Executar testes em modo headless e Gravar os resultados dos testes
         uses: cypress-io/github-action@v5.0.8
