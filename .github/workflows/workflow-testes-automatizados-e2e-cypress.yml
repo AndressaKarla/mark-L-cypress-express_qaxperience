@@ -33,22 +33,22 @@ jobs:
       - name: Passo 1 - Obter cópia do código-fonte do repositório
         uses: actions/checkout@v3.3.0
         
-      - name: Passo 2 - Instalar dependências Mark L (app > api)
+      - name: Passo 2 - Instalar dependências Mark L (apps > api)
         run: |
           cd "/__w/mark-L-cypress-express_qaxperience/mark-L-cypress-express_qaxperience/apps/api"
           yarn install
           
-      - name: Passo 3 - Executar Mark L (app > api) em um ambiente de desenvolvimento local
+      - name: Passo 3 - Executar Mark L (apps > api) em um ambiente de desenvolvimento local
         run: |
           cd "/__w/mark-L-cypress-express_qaxperience/mark-L-cypress-express_qaxperience/apps/api" 
           yarn dev & sleep 10
         
-      - name: Passo 4 - Instalar dependências Mark L (app > web)
+      - name: Passo 4 - Instalar dependências Mark L (apps > web)
         run: |
           cd "/__w/mark-L-cypress-express_qaxperience/mark-L-cypress-express_qaxperience/apps/web" 
           yarn install
         
-      - name: Passo 5 - Executar Mark L (app > web) em um ambiente de desenvolvimento local
+      - name: Passo 5 - Executar Mark L (apps > web) em um ambiente de desenvolvimento local
         run: |
           cd "/__w/mark-L-cypress-express_qaxperience/mark-L-cypress-express_qaxperience/apps/web" 
           yarn dev & sleep 10
@@ -59,6 +59,7 @@ jobs:
           # instalar dependências 
           install-command: yarn install
           browser: electron
+          wait-on: "http://localhost:8080"
           # executar testes em modo headless
           spec: ${{ github.event.inputs.spec }} # configurado em "on > workflow_dispatch > inputs > spec"
         env:
