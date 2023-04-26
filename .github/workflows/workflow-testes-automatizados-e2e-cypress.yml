@@ -41,7 +41,7 @@ jobs:
       - name: Passo 3 - Executar Mark L (app > api) em um ambiente de desenvolvimento local
         run: |
           cd "/__w/mark-L-cypress-express_qaxperience/mark-L-cypress-express_qaxperience/apps/api" 
-          yarn dev &
+          yarn dev & sleep 10
         
       - name: Passo 4 - Instalar dependências Mark L (app > web)
         run: |
@@ -51,7 +51,7 @@ jobs:
       - name: Passo 5 - Executar Mark L (app > web) em um ambiente de desenvolvimento local
         run: |
           cd "/__w/mark-L-cypress-express_qaxperience/mark-L-cypress-express_qaxperience/apps/web" 
-          yarn dev &
+          yarn dev & sleep 10
         
       - name: Passo 6 - Instalar dependências cypress, Executar testes em modo headless e Gravar os resultados dos testes
         uses: cypress-io/github-action@v5.0.8
@@ -59,8 +59,6 @@ jobs:
           # instalar dependências 
           install-command: yarn install
           browser: electron
-          # gravar resultados dos testes 
-          # record: true
           # executar testes em modo headless
           spec: ${{ github.event.inputs.spec }} # configurado em "on > workflow_dispatch > inputs > spec"
         env:
