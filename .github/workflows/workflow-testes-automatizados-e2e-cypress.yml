@@ -60,7 +60,7 @@ jobs:
           install-command: yarn install
           browser: electron
           # gravar resultados dos testes 
-          record: true
+          # record: true
           # executar testes em modo headless
           spec: ${{ github.event.inputs.spec }} # configurado em "on > workflow_dispatch > inputs > spec"
         env:
