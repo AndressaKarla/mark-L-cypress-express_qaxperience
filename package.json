@@ -6,8 +6,6 @@
   "author": "Andressa Karla",
   "license": "MIT",
   "devDependencies": {
-    "@shelex/cypress-allure-plugin": "2.34.0",
-    "allure-commandline": "2.20.1",
     "cypress": "12.2.0",
     "http-server": "14.1.1"
   }
