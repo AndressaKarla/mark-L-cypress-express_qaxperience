@@ -43,7 +43,7 @@ jobs:
           cd '/__w/mark-L-cypress-express_qaxperience/mark-L-cypress-express_qaxperience/apps/web' 
           yarn install
           
-      - name: Passo 4 - Executar Mark L (apps > api e apps > web) em 2º plano em um ambiente de desenvolvimento local, Executar testes em modo headless e Gravar os resultados dos testes
+      - name: Passo 4 - Executar Mark L (apps > api e apps > web) em 2º plano em um ambiente de desenvolvimento local, Executar testes em modo headless e Gerar os resultados dos testes
         run: |
           # verificar se as dependências Mark L (apps > api e apps > web) estão instaladas
           yarn --cwd ./apps/api check
@@ -59,8 +59,8 @@ jobs:
           # instalar dependências cypress
           yarn --cwd ../.. install
           
-          # executar os testes em modo headless e gravar os resultados dos testes
-          yarn cypress run --spec "${{ github.event.inputs.spec }}" --browser chrome --headless
+          # executar os testes em modo headless e gerar os resultados dos testes
+          yarn cypress run --spec '${{ github.event.inputs.spec }}' --browser chrome --headless
           
       - name: Passo 5 - Armazenar os resultados dos testes em vídeos
         uses: actions/upload-artifact@v3
@@ -71,9 +71,9 @@ jobs:
           # armazena por 30 dias
           retention-days: 30
 
-      - name: Passo 6 - Armazenar os resultados dos testes em screenshots
+      - name: Passo 6 - Armazenar os resultados dos testes que falharam em screenshots
         uses: actions/upload-artifact@v3
-        if: ${{ always() }}
+        if: ${{ failure() }}
         with:
           name: cypress-screenshots-chrome
           path: cypress/screenshots
