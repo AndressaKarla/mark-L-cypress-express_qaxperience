@@ -17,8 +17,8 @@ on:
         default: cypress/e2e/* 
 
 jobs:
-  # electron - utilizado para garantir que os testes funcionais são executados com sucesso
-  testes-automatizados-e2e-cypress-electron:
+  # utilizado para garantir que os testes funcionais são executados com sucesso
+  testes-automatizados-e2e-cypress-chrome:
     # tempo máximo para execução de uma tarefa antes que o GitHub a cancele automaticamente
     timeout-minutes: 60
     runs-on: ubuntu-latest
@@ -61,7 +61,7 @@ jobs:
         with:
           # instalar dependências 
           install-command: yarn install
-          browser: electron
+          browser: chrome
           # executar testes em modo headless
           spec: ${{ github.event.inputs.spec }} # configurado em "on > workflow_dispatch > inputs > spec"
         env:
@@ -72,7 +72,7 @@ jobs:
         uses: actions/upload-artifact@v3
         if: ${{ always() }}
         with:
-          name: cypress-videos-electron
+          name: cypress-videos-chrome
           path: cypress/videos
           # armazena por 30 dias
           retention-days: 30
@@ -81,7 +81,7 @@ jobs:
         uses: actions/upload-artifact@v3
         if: ${{ failure() }}
         with:
-          name: cypress-screenshots-electron
+          name: cypress-screenshots-chrome
           path: cypress/screenshots
           # armazena por 30 dias
           retention-days: 30
