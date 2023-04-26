@@ -45,7 +45,7 @@ jobs:
           
       - name: Passo 4 - Executar Mark L (apps > api e apps > web) em um ambiente de desenvolvimento local
         run: |
-          yarn global add concurrently wait-on
+          yarn global add concurrently wait-on && sleep 10
           concurrently 'yarn --cwd ./apps/api dev' 'yarn --cwd ./apps/web dev' &
           wait-on: 'http://localhost:8080, http://localhost:3333'
         timeout-minutes: 5
