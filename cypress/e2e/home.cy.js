@@ -5,5 +5,7 @@ describe('home', () => {
     cy.visit('/')
 
     cy.title().should('eq', 'Gerencie suas tarefas com Mark L')
+    
+    cy.wait(5000)
   })
 })
