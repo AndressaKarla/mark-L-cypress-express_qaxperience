@@ -45,10 +45,16 @@ jobs:
           
       - name: Passo 4 - Executar Mark L (apps > api e apps > web) em um ambiente de desenvolvimento local
         run: |
-          yarn global add concurrently wait-on && sleep 10
-          concurrently 'yarn --cwd ./apps/api dev' 'yarn --cwd ./apps/web dev' &
-          wait-on: 'http://localhost:8080, http://localhost:3333'
-        timeout-minutes: 5
+          # verificar se as dependências estão instaladas
+          yarn --cwd ./apps/api check
+          yarn --cwd ./apps/web check
+          
+          # iniciar o servidor usando o PM2
+          yarn --cwd ./apps/api start &
+          yarn --cwd ./apps/web start &
+          
+          # aguardar até que os servidores estejam prontos para acessar
+          while ! curl -sSf http://localhost:3333/healthcheck > /dev/null || ! curl -sSf http://localhost:8080 > /dev/null; do sleep 1; done
           
       - name: Passo 5 - Instalar dependências cypress, Executar testes em modo headless e Gravar os resultados dos testes
         uses: cypress-io/github-action@v5.0.8
