@@ -35,12 +35,12 @@ jobs:
         
       - name: Passo 2 - Instalar dependências Mark L (apps > api)
         run: |
-          cd "/__w/mark-L-cypress-express_qaxperience/mark-L-cypress-express_qaxperience/apps/api"
+          cd '/__w/mark-L-cypress-express_qaxperience/mark-L-cypress-express_qaxperience/apps/api'
           yarn install
         
       - name: Passo 3 - Instalar dependências Mark L (apps > web)
         run: |
-          cd "/__w/mark-L-cypress-express_qaxperience/mark-L-cypress-express_qaxperience/apps/web" 
+          cd '/__w/mark-L-cypress-express_qaxperience/mark-L-cypress-express_qaxperience/apps/web' 
           yarn install
         
       - name: Passo 4 - Instalar dependências cypress, Executar testes em modo headless e Gravar os resultados dos testes
@@ -50,9 +50,9 @@ jobs:
           install-command: yarn install
           browser: electron
           start: |
-            cd "/__w/mark-L-cypress-express_qaxperience/mark-L-cypress-express_qaxperience/apps/api" & yarn dev & sleep 10
-            cd "/__w/mark-L-cypress-express_qaxperience/mark-L-cypress-express_qaxperience/apps/web" & yarn dev & sleep 10
-          wait-on: "http://localhost:8080"
+            cd '/__w/mark-L-cypress-express_qaxperience/mark-L-cypress-express_qaxperience/apps/api' && yarn dev & sleep 10
+            cd '/__w/mark-L-cypress-express_qaxperience/mark-L-cypress-express_qaxperience/apps/web' && yarn dev & sleep 10
+          wait-on: 'http://localhost:3333, http://localhost:8080'
           # executar testes em modo headless
           spec: ${{ github.event.inputs.spec }} # configurado em "on > workflow_dispatch > inputs > spec"
         env:
