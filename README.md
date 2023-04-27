@@ -10,7 +10,7 @@ Esse projeto "mark-L-cypress-express_qaxperience" é executado em um ambiente de
 - [Workflow de testes contínuos em Cypress no Github Actions](https://play.qaxperience.com/89386-workflow-de-testes-continuos-em-cypress-no-github-actions) 
 
 
-## :books: Conceitos apresentados nos módulos do curso "Cypress eXpress"
+## :books: Conteúdos apresentados nos módulos do curso "Cypress eXpress"
 - Testes independentes;
 - Testes E2E (ponta a ponta);
 - Custom Commands;
@@ -18,27 +18,27 @@ Esse projeto "mark-L-cypress-express_qaxperience" é executado em um ambiente de
 - CLI (Interface de Linha de Comando) e Multi-Browser (Electron, Chrome, Firefox);
 - Reusos e refatorações;
 - Evidências das execuções dos testes automatizados em formato de videos e capturas de tela (screenshots);
-- Entre outros conceitos
+- Entre outros conteúdos.
 
 
-## :books: Conceitos apresentados nos módulos do curso "Workflow de testes contínuos em Cypress no Github Actions"
+## :books: Conteúdos apresentados nos módulos do curso "Workflow de testes contínuos em Cypress no Github Actions"
 - Criando Workflows;
 - Pipeline Multi-Browser;
 - Continuous Testing;
-- Entre outros conceitos
+- Entre outros conteúdos.
 
 
-## :pushpin: Cenários implementados no projeto
-- Validar aplicação online
-- Validar cadastro de uma tarefa com sucesso
-- Validar que não deve cadastrar uma tarefa duplicada
-- Validar campo obrigatório
-- Validar conclusão de uma tarefa
-- Validar exclusão de uma tarefa
+## :pushpin: Casos de testes implementados no projeto
+- Validar aplicação online;
+- Validar cadastro de uma tarefa com sucesso;
+- Validar que não deve cadastrar uma tarefa duplicada;
+- Validar campo obrigatório;
+- Validar conclusão de uma tarefa;
+- Validar exclusão de uma tarefa.
 
 
 ---
-# :warning: Antes de baixar ou clonar esse projeto, é necessário seguir as instruções abaixo :point_down:
+# :warning: Antes de clonar ou executar esse projeto, é necessário seguir as instruções abaixo :point_down:
 
 ## :hammer_and_wrench: Janela do "Windows Explorer", criar uma pasta "tools"
 - Abrir uma janela do "Windows Explorer"
@@ -111,7 +111,7 @@ yarn --version
 - Acessar o diretório onde será baixado ou clonado o projeto "mark-L-cypress-express_qaxperience"
 - Copiar esse diretório 
 - Abrir um novo cmder ou outro terminal de preferência
-- Informar o comando abaixo para acessar onde será baixado ou clonado o projeto
+- Informar o comando abaixo para acessar onde será clonado ou baixado o projeto
 ```
 cd "<diretório copiado anteriormente>"
 ```
@@ -145,8 +145,51 @@ yarn --cwd ./apps/api install
 ```
 
 
-## :checkered_flag: Executar Mark L (apps > api) em um ambiente de desenvolvimento local
-- No cmder aberto anteriormente, ainda no projeto “mark-L-cypress-express_qaxperience”, informar o comando abaixo para executar Mark L (apps > api) em um ambiente de desenvolvimento local
+## :hammer_and_wrench: Instalar as dependências necessárias do Mark L (apps > web) 
+- No cmder aberto anteriormente, ainda no projeto “mark-L-cypress-express_qaxperience”, informar o comando abaixo para instalar as dependências necessárias do Mark L (apps > web)  
+```
+yarn --cwd ./apps/web install
+```
+
+
+## :hammer_and_wrench: Instalar as dependências necessárias do Cypress 
+- No cmder aberto anteriormente, ainda no projeto “mark-L-cypress-express_qaxperience”, informar o comando abaixo para instalar as dependências necessárias do Cypress 
+```
+yarn install
+```
+- Fechar esse cmder
+
+
+## :hammer_and_wrench: Instalar as extensões no Visual Studio Code (VS Code)
+- Caso ainda não tenha o VS Code baixado e instalado, acessar o site do [Visual Studio Code](https://code.visualstudio.com/download), baixar e instalar
+- Com o Visual Studio Code aberto, se for apresentado alguma mensagem de "Instalar pacote de idiomas ...", clicar no ícone de configurações > "Don't Show Again" 
+- Clicar na opção "Extensions", informar e instalar as extensões abaixo:
+  - Material Icon Theme
+    - Philipp Kief
+      - Nas opções apresentadas, clicar na opção "Material Icon Theme" para habilitar a extensão
+  - One Dark Pro 
+    - binaryify
+      - Nas opções apresentadas, clicar na opção "One Dark Pro Darker" para habilitar a extensão
+- Fechar o VS Code
+
+
+---
+# :dart: Executar Mark L, Executar testes e Gerar os resultados dos testes 
+
+## :triangular_flag_on_post: Executar Mark L (apps > api) em um ambiente de desenvolvimento local
+- Abrir uma janela do "Windows Explorer"
+- Acessar o diretório onde foi clonado o projeto “mark-L-cypress-express_qaxperience”
+- Copiar esse diretório 
+- Abrir um novo cmder
+- Informar o comando abaixo para acessar o projeto “mark-L-cypress-express_qaxperience”
+```
+cd "<diretório copiado anteriormente>"
+```
+Ex.: 
+```
+cd "C:\QAx\projects\mark-L-cypress-express_qaxperience"
+```
+- Informar o comando abaixo para executar Mark L (apps > api) em um ambiente de desenvolvimento local
 Ex.: 
 ```
 yarn --cwd ./apps/api dev
@@ -154,7 +197,7 @@ yarn --cwd ./apps/api dev
 - NÃO fechar esse cmder
 
 
-## :hammer_and_wrench: Instalar as dependências necessárias do Mark L (apps > web) 
+## :triangular_flag_on_post: Executar Mark L (apps > web) em um ambiente de desenvolvimento local
 - Abrir uma janela do "Windows Explorer"
 - Acessar o diretório onde foi clonado o projeto “mark-L-cypress-express_qaxperience”
 - Copiar esse diretório 
@@ -167,14 +210,7 @@ Ex.:
 ```
 cd "C:\QAx\projects\mark-L-cypress-express_qaxperience"
 ```
-- Informar o comando abaixo para instalar as dependências necessárias do Mark L (apps > web)  
-```
-yarn --cwd ./apps/web install
-```
-
-
-## :checkered_flag: Executar Mark L (apps > web) em um ambiente de desenvolvimento local
-- No cmder aberto anteriormente, ainda no projeto “mark-L-cypress-express_qaxperience”, informar o comando abaixo para executar Mark L (apps > web) em um ambiente de desenvolvimento local
+- Informar o comando abaixo para executar Mark L (apps > web) em um ambiente de desenvolvimento local
 Ex.: 
 ```
 yarn --cwd ./apps/web dev
@@ -182,7 +218,7 @@ yarn --cwd ./apps/web dev
 - NÃO fechar esse cmder
 
 
-## :hammer_and_wrench: Instalar as dependências necessárias do Cypress 
+## :triangular_flag_on_post: Executar os testes automatizados e2e (ponta a ponta) no navegador chrome na interface gráfica do Cypress
 - Abrir uma janela do "Windows Explorer"
 - Acessar o diretório onde foi clonado o projeto “mark-L-cypress-express_qaxperience”
 - Copiar esse diretório 
@@ -195,17 +231,11 @@ Ex.:
 ```
 cd "C:\QAx\projects\mark-L-cypress-express_qaxperience"
 ```
-- Informar o comando abaixo para instalar as dependências necessárias do Cypress 
-```
-yarn install
-```
-
-
-## :checkered_flag: Executar os testes automatizados e2e (ponta a ponta) no navegador chrome na interface gráfica do Cypress
-- No cmder aberto anteriormente, ainda no projeto “mark-L-cypress-express_qaxperience”, informar o comando abaixo para abrir a interface gráfica do Cypress
+- Informar o comando abaixo para abrir a interface gráfica do Cypress
 ```
 yarn cypress open
 ```
+- NÃO fechar esse cmder
 - Na interface gráfica do Cypress, em "Welcome to Cypress!", clicar em "E2E Testing"
 - Em "Choose a browser", clicar em "Chrome"
 - Clicar em "Start E2E Testing in Chrome"
@@ -213,7 +243,7 @@ yarn cypress open
 - Em "cypress-express-mark" > "Specs", clicar em "tasks"
 
 
-## :checkered_flag: Ou executar os testes automatizados e2e (ponta a ponta) no navegador chrome em modo headless (2° plano)
+## :triangular_flag_on_post: Ou executar os testes automatizados e2e (ponta a ponta) no navegador chrome em modo headless (2° plano) e Gerar os resultados dos testes
 - Abrir uma janela do "Windows Explorer"
 - Acessar o diretório onde foi baixado ou clonado o projeto “mark-L-cypress-express_qaxperience”
 - Copiar esse diretório 
@@ -226,30 +256,29 @@ Ex.:
 ```
 cd "C:\QAx\projects\mark-L-cypress-express_qaxperience"
 ```
-- Informar o comando abaixo para executar os testes automatizados em modo headless (2° plano), mesmo modo que é utilizado no "workflow-testes-automatizados-e2e-cypress.yml" no GitHub Actions:
+- Informar o comando abaixo para executar os testes automatizados em modo headless (2° plano - mesmo modo que é utilizado no "workflow-testes-automatizados-e2e-cypress.yml" no GitHub Actions) e Gerar os resultados dos testes:
 ```
 yarn cypress run --browser chrome
 ```
 
 
-## :hammer_and_wrench: Visual Studio Code (VS Code)
-- Caso ainda não tenha o VS Code baixado e instalado, acessar o site do [Visual Studio Code](https://code.visualstudio.com/download), baixar e instalar
-- Com o Visual Studio Code aberto, se for apresentado alguma mensagem de "Instalar pacote de idiomas ...", clicar no ícone de configurações > "Don't Show Again" 
+---
+# :female_detective: Verificar os resultados das execuções dos testes automatizados e2e (ponta a ponta) :male_detective:
 
-
-## :hammer_and_wrench: Instalar as extensões no VS Code
-- Com o VS Code aberto, clicar na opção "Extensions", informar e instalar as extensões abaixo:
-  - Material Icon Theme
-    - Philipp Kief
-      - Nas opções apresentadas, clicar na opção "Material Icon Theme" para habilitar a extensão
-  - One Dark Pro 
-    - binaryify
-      - Nas opções apresentadas, clicar na opção "One Dark Pro Darker" para habilitar a extensão
-- Fechar o VS Code
-
-
-## :hammer_and_wrench: Abrir o VS Code diretamente na pasta do projeto "mark-L-cypress-express_qaxperience"
-- No cmder aberto anteriormente, informar o comando abaixo para abrir o VS Code diretamente na pasta do projeto "mark-L-cypress-express_qaxperience"
+## :bookmark_tabs: Abrir o VS Code diretamente na pasta do projeto "mark-L-cypress-express_qaxperience"
+- Abrir uma janela do "Windows Explorer"
+- Acessar o diretório onde foi clonado o projeto “mark-L-cypress-express_qaxperience”
+- Copiar esse diretório 
+- Abrir um novo cmder
+- Informar o comando abaixo para acessar o projeto “mark-L-cypress-express_qaxperience”
+```
+cd "<diretório copiado anteriormente>"
+```
+Ex.: 
+```
+cd "C:\QAx\projects\mark-L-cypress-express_qaxperience"
+```
+- Informar o comando abaixo para abrir o VS Code diretamente na pasta do projeto "mark-L-cypress-express_qaxperience"
 ```
 code .
 ```
@@ -257,8 +286,8 @@ code .
 	- Clicar no botão "Yes, I trust the authors ...."
 
 
-## :heavy_check_mark: Em caso de sucesso, verificar os vídeos com os resultados das execuções dos testes automatizados e2e (ponta a ponta)
-- No VS Code aberto anteriormente, acessar a pasta cypress > vídeos
+## :heavy_check_mark: Em caso de sucesso dos testes, verificar os vídeos
+- No VS Code aberto anteriormente, acessar "cypress > vídeos"
 
 Ex.:
 ```
@@ -267,8 +296,8 @@ tasks.cy.js.mp4
 ```  
 
 
-## :x: Em caso de falha, verificar os screenshots com os resultados das execuções dos testes automatizados e2e (ponta a ponta)
-- No VS Code aberto anteriormente, acessar a pasta cypress > screenshots
+## :x: Em caso de falha dos testes, verificar os screenshots 
+- No VS Code aberto anteriormente, acessar "cypress > screenshots"
 
 Ex.:
 ```
