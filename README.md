@@ -145,7 +145,7 @@ yarn --cwd ./apps/api install
 ```
 
 
-## :checkered_flag: Executar Mark L (apps > api e apps > web) em um ambiente de desenvolvimento local
+## :checkered_flag: Executar Mark L (apps > api) em um ambiente de desenvolvimento local
 - No cmder aberto anteriormente, ainda no projeto “mark-L-cypress-express_qaxperience”, informar o comando abaixo para executar Mark L (apps > api) em um ambiente de desenvolvimento local
 Ex.: 
 ```
@@ -173,7 +173,7 @@ yarn --cwd ./apps/web install
 ```
 
 
-## :checkered_flag: Executar Mark L (apps > api e apps > web) em um ambiente de desenvolvimento local
+## :checkered_flag: Executar Mark L (apps > web) em um ambiente de desenvolvimento local
 - No cmder aberto anteriormente, ainda no projeto “mark-L-cypress-express_qaxperience”, informar o comando abaixo para executar Mark L (apps > web) em um ambiente de desenvolvimento local
 Ex.: 
 ```
