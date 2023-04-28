@@ -50,8 +50,8 @@ jobs:
           yarn --cwd ./apps/web check
           
           # executar Mark L (apps > api e apps > web) em 2º plano em um ambiente de desenvolvimento local
-          yarn --cwd ./apps/api start &
-          yarn --cwd ./apps/web start &
+          yarn --cwd ./apps/api dev &
+          yarn --cwd ./apps/web dev &
           
           # aguardar até que Mark L (apps > web) esteja pronto para acessar
           while ! curl -sSf http://localhost:8080 > /dev/null; do sleep 1; done
