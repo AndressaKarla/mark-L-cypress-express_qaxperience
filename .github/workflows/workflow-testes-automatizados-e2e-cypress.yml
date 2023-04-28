@@ -19,8 +19,7 @@ on:
 jobs:
   # utilizado para garantir que os testes funcionais são executados com sucesso
   testes-automatizados-e2e-cypress-chrome:
-    # tempo máximo para execução de uma tarefa antes que o GitHub a cancele automaticamente
-    timeout-minutes: 60
+    # agente de execução/runner do tipo máquina virtual bem enxuta, sem interface gráfica
     runs-on: ubuntu-latest
     
     # template cypress com todas as dependências necessárias para executar os testes
@@ -35,13 +34,11 @@ jobs:
         
       - name: Passo 2 - Instalar dependências Mark L (apps > api)
         run: |
-          cd '/__w/mark-L-cypress-express_qaxperience/mark-L-cypress-express_qaxperience/apps/api'
-          yarn install
+          yarn --cwd ./apps/api install
         
       - name: Passo 3 - Instalar dependências Mark L (apps > web)
         run: |
-          cd '/__w/mark-L-cypress-express_qaxperience/mark-L-cypress-express_qaxperience/apps/web' 
-          yarn install
+          yarn --cwd ./apps/web install
           
       - name: Passo 4 - Executar Mark L (apps > api e apps > web) em 2º plano em um ambiente de desenvolvimento local, Executar testes em modo headless e Gerar os resultados dos testes
         run: |
