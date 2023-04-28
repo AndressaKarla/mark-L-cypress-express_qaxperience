@@ -6,7 +6,6 @@
   "author": "Andressa Karla",
   "license": "MIT",
   "devDependencies": {
-    "cypress": "12.2.0",
-    "http-server": "14.1.1"
+    "cypress": "12.2.0"
   }
 }
