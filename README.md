@@ -2,10 +2,10 @@
 # :test_tube: Projeto de Testes Automatizados E2E (Ponta a Ponta) | Javascript | Cypress | GitHub Actions :test_tube:
 ---
 # :information_source: Introdução 
-Esse projeto "mark-L-cypress-express_qaxperience" é executado em um ambiente de desenvolvimento local nas aplicações "Mark L" de Gerenciamento de Tarefas Web e API  desenvolvidas pelo [Fernando Papito](https://www.linkedin.com/in/papitoio/) nos cursos da [QAXperience](qaxperience.com).
+Esse projeto "mark-L-cypress-express_qaxperience" é executado em um ambiente de desenvolvimento local nas aplicações "Mark L" de Gerenciamento de Tarefas Web e API  desenvolvidas pelo [Fernando Papito](https://www.linkedin.com/in/papitoio/) nos cursos da [QAxperience](https://www.qaxperience.com/).
 
 
-# :computer: Cursos da QAXperience
+# :computer: Cursos da QAxperience
 - [Cypress eXpress](https://qaxperience.com/cursos/cypress-express/) 
 - [Workflow de testes contínuos em Cypress no Github Actions](https://play.qaxperience.com/89386-workflow-de-testes-continuos-em-cypress-no-github-actions) 
 
@@ -174,7 +174,7 @@ yarn install
 
 
 ---
-# :dart: Executar Mark L, Executar testes e Gerar os resultados dos testes 
+# :dart: Executar Mark L, Executar testes, Considerar alguns arquivos como não modificados no versionameno do git e Gerar os resultados dos testes 
 
 ## :triangular_flag_on_post: Executar Mark L (apps > api) em um ambiente de desenvolvimento local
 - Abrir uma janela do "Windows Explorer"
@@ -236,11 +236,12 @@ cd "C:\QAx\projects\mark-L-cypress-express_qaxperience"
 yarn cypress open
 ```
 - NÃO fechar esse cmder
-- Na interface gráfica do Cypress, em "Welcome to Cypress!", clicar em "E2E Testing"
+- Na interface gráfica do Cypress, clicar em "Continue"
+- Em "Welcome to Cypress!", clicar em "E2E Testing"
 - Em "Choose a browser", clicar em "Chrome"
 - Clicar em "Start E2E Testing in Chrome"
-- Em "cypress-express-mark" > "Specs", clicar em "home"
-- Em "cypress-express-mark" > "Specs", clicar em "tasks"
+- Em "mark-L-cypress-express_qaxperience" > "Specs"> "E2E specs" > "cypress\e2e", clicar em "home"
+- Em "cypress\e2e", clicar em "tasks"
 
 
 ## :triangular_flag_on_post: Ou executar os testes automatizados e2e (ponta a ponta) no navegador chrome em modo headless (2° plano) e Gerar os resultados dos testes
@@ -260,7 +261,30 @@ cd "C:\QAx\projects\mark-L-cypress-express_qaxperience"
 ```
 yarn cypress run --browser chrome
 ```
+- NÃO fechar esse cmder
 
+## :triangular_flag_on_post: Informar alguns comandos para considerar que alguns arquivos (apps/api/src/database) não foram modificados no versionamento do git
+- Abrir uma janela do "Windows Explorer"
+- Acessar o diretório onde foi clonado o projeto “mark-L-cypress-express_qaxperience”
+- Copiar esse diretório 
+- Abrir um novo cmder
+- Informar o comando abaixo para acessar o projeto “mark-L-cypress-express_qaxperience”
+```
+cd "<diretório copiado anteriormente>"
+```
+Ex.: 
+```
+cd "C:\QAx\projects\mark-L-cypress-express_qaxperience"
+```
+- Informar o comando abaixo para considerar que o arquivo "database.sqlite-shm" de "apps/api/src/database" não foi modificado no versionamento do git
+```
+git update-index --assume-unchanged "./apps/api/src/database/database.sqlite-shm"
+```
+- Informar o comando abaixo para considerar que o arquivo "database.sqlite-wal" de "apps/api/src/database" não foi modificado no versionamento do git
+```
+git update-index --assume-unchanged "./apps/api/src/database/database.sqlite-wal"
+```
+- Fechar esse cmder
 
 ---
 # :female_detective: Verificar os resultados das execuções dos testes automatizados e2e (ponta a ponta) :male_detective:
