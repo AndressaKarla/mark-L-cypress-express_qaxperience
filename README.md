@@ -190,6 +190,7 @@ Ex.:
 cd "C:\QAx\projects\mark-L-cypress-express_qaxperience"
 ```
 - Informar o comando abaixo para executar Mark L (apps > api) em um ambiente de desenvolvimento local
+
 Ex.: 
 ```
 yarn --cwd ./apps/api dev
@@ -211,6 +212,7 @@ Ex.:
 cd "C:\QAx\projects\mark-L-cypress-express_qaxperience"
 ```
 - Informar o comando abaixo para executar Mark L (apps > web) em um ambiente de desenvolvimento local
+
 Ex.: 
 ```
 yarn --cwd ./apps/web dev
