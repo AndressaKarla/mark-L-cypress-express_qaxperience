@@ -27,8 +27,6 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 Cypress.Commands.add('cadastrarTarefa', (nomeTarefa = '') => {
-    cy.visit('/')
-    
     cy.get('input[placeholder="Add a new Task"]').as('campoTarefa')
 
     if (nomeTarefa !== ''){
