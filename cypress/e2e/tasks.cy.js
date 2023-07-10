@@ -25,37 +25,48 @@ describe('Tarefas', () => {
                 cy.visit('/')
                 cy.excluirTarefaPelaAPI(nomeTarefa)
             })
-            
+
             context('Quando eu cadastrar uma nova tarefa', () => {
                 beforeEach(() => {
                     cy.cadastrarTarefa(nomeTarefa)
                 })
-                
 
-                it.only('Então a nova tarefa cadastrada deve deve ser apresentada em "Created Tasks"', () => {
+
+                it('Então a nova tarefa cadastrada deve deve ser apresentada em "Created Tasks"', () => {
                     cy.contains('main div p', nomeTarefa) // ou main > div > p
                         .should('be.visible')
                 })
             })
         })
 
+        context('Dado que eu esteja na página Home do site Mark L', () => {
+            beforeEach(() => {
+                cy.visit('/')
 
-        it('não deve cadastrar uma tarefa duplicada', () => {
-            const tarefa = massaDados.tarefa_duplicada
+                const tarefa = massaDados.tarefa_duplicada
+                cy.excluirTarefaPelaAPI(tarefa.name)
+            })
 
-            cy.excluirTarefaPelaAPI(tarefa.name)
+            context('E eu cadastre uma nova tarefa', () => {
+                beforeEach(() => {
+                    const tarefa = massaDados.tarefa_duplicada
+                    cy.cadastrarTarefaPelaAPI(tarefa)
+                })
 
-            // Dado que eu tenha uma tarefa cadastrada
-            cy.cadastrarTarefaPelaAPI(tarefa)
 
-            // Quando eu tentar cadastrar uma tarefa duplicada
-            cy.cadastrarTarefa(tarefa.name)
+                context('Quando eu tentar cadastrar uma tarefa duplicada', () => {
+                    beforeEach(() => {
+                        const tarefa = massaDados.tarefa_duplicada
+                        cy.cadastrarTarefa(tarefa.name)
+                    })
 
-            // Então deve ser apresentada uma mensagem de duplicidade
-            // E não deve cadastrar uma tarefa duplicada
-            cy.get('.swal2-html-container')
-                .should('be.visible')
-                .should('have.text', 'Task already exists!')
+                    it.only('Então deve ser apresentada uma mensagem de duplicidade', () => {
+                        cy.get('.swal2-html-container')
+                            .should('be.visible')
+                            .should('have.text', 'Task already exists!')
+                    })
+                })
+            })
         })
 
         it('campo obrigatório', () => {
