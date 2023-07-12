@@ -1,6 +1,14 @@
 /// <reference types="cypress" />
 
-describe('tarefas', () => {
+/* tasks.cy.js
+ *
+ * Feature: Tarefas
+ *   Como um usuário do site Mark L
+ *   Quero executar alguns casos de testes 
+ *   Para validar a feature Tarefas
+ */
+
+describe('Tarefas', () => {
     let massaDados;
 
     before(() => {
@@ -9,78 +17,148 @@ describe('tarefas', () => {
         })
     })
 
-    context('cadastro', () => {
-        it('deve cadastrar uma nova tarefa', () => {
+    context('Cadastro', () => {
+        context('Dado que eu esteja na página Home do site Mark L', () => {
             const nomeTarefa = 'Ler um livro de Node.js'
-    
-            cy.excluirTarefaPelaAPI(nomeTarefa)
-            cy.cadastrarTarefa(nomeTarefa)
-    
-            cy.contains('main div p', nomeTarefa) // ou main > div > p
-                .should('be.visible')
+
+            beforeEach(() => {
+                cy.visit('/')
+                cy.excluirTarefaPelaAPI(nomeTarefa)
+            })
+
+            context('Quando eu cadastrar uma nova tarefa', () => {
+                beforeEach(() => {
+                    cy.cadastrarTarefa(nomeTarefa)
+                })
+
+
+                it('Então a nova tarefa cadastrada deve ser apresentada em Created Tasks', () => {
+                    cy.contains('main div p', nomeTarefa) // ou main > div > p
+                        .should('be.visible')
+                })
+            })
         })
-        
-        it('não deve cadastrar uma tarefa duplicada', () => {
-            const tarefa = massaDados.tarefa_duplicada
-    
-            cy.excluirTarefaPelaAPI(tarefa.name)
-    
-            // Dado que eu tenha uma tarefa cadastrada
-            cy.cadastrarTarefaPelaAPI(tarefa)
-    
-            // Quando eu tentar cadastrar uma tarefa duplicada
-            cy.cadastrarTarefa(tarefa.name)
-    
-            // Então deve ser apresentada uma mensagem de duplicidade
-            // E não deve cadastrar uma tarefa duplicada
-            cy.get('.swal2-html-container') 
-                .should('be.visible')
-                .should('have.text', 'Task already exists!')
+
+        context('Dado que eu esteja na página Home do site Mark L', () => {
+            beforeEach(() => {
+                cy.visit('/')
+
+                const tarefa = massaDados.tarefa_duplicada
+                cy.excluirTarefaPelaAPI(tarefa.name)
+            })
+
+            context('E eu cadastre uma nova tarefa', () => {
+                beforeEach(() => {
+                    const tarefa = massaDados.tarefa_duplicada
+                    cy.cadastrarTarefaPelaAPI(tarefa)
+                })
+
+                context('Quando eu tentar cadastrar uma tarefa duplicada', () => {
+                    beforeEach(() => {
+                        const tarefa = massaDados.tarefa_duplicada
+                        cy.cadastrarTarefa(tarefa.name)
+                    })
+
+                    it('Então deve ser apresentada uma mensagem de duplicidade', () => {
+                        cy.get('.swal2-html-container')
+                            .should('be.visible')
+                            .should('have.text', 'Task already exists!')
+                    })
+                })
+            })
         })
-    
-        it('campo obrigatório', () => {
-            cy.cadastrarTarefa()
-    
-            const mensagemEsperada = 'This is a required field'
-            cy.validarCampoPropRequired(mensagemEsperada)
+
+        context('Dado que eu esteja na página Home do site Mark L', () => {
+            beforeEach(() => {
+                cy.visit('/')
+            })
+
+            context('Quando eu tentar cadastrar uma nova tarefa sem informar o campo Add a new Task', () => {
+                beforeEach(() => {
+                    cy.cadastrarTarefa()
+                })
+
+                it('Então deve ser apresentada uma mensagem de obrigatoriedade', () => {
+                    const mensagemEsperada = 'This is a required field'
+                    cy.validarCampoPropRequired(mensagemEsperada)
+                })
+            })
         })
     })
 
-    context('atualização', () => {
-        it('deve concluir uma tarefa', () => {
-            const tarefa = massaDados.tarefa_atualizacao
-    
-            cy.excluirTarefaPelaAPI(tarefa.name)
-            cy.cadastrarTarefaPelaAPI(tarefa)
+    context('Atualização', () => {
+        context('Dado que eu esteja na página Home do site Mark L', () => {
+            beforeEach(() => {
+                cy.visit('/')
 
-            cy.visit('/')
+                const tarefa = massaDados.tarefa_atualizacao
+                cy.excluirTarefaPelaAPI(tarefa.name)
+            })
 
-            cy.contains('p', tarefa.name)
-                .parent() 
-                .find('button[class*=ItemToggle]') 
-                .click()
+            context('E eu cadastre uma nova tarefa', () => {
+                beforeEach(() => {
+                    const tarefa = massaDados.tarefa_atualizacao
+                    cy.cadastrarTarefaPelaAPI(tarefa)
 
-            cy.contains('p', tarefa.name)
-                .should('have.css', 'text-decoration-line', 'line-through')
+                    cy.reload()
+                })
+
+                context('Quando eu concluir a tarefa', () => {
+                    beforeEach(() => {
+                        const tarefa = massaDados.tarefa_atualizacao
+
+                        cy.contains('p', tarefa.name)
+                            .parent()
+                            .find('button[class*=ItemToggle]')
+                            .click()
+                    })
+
+                    it('Então a tarefa cadastrada deve ser apresentada como concluída', () => {
+                        const tarefa = massaDados.tarefa_atualizacao
+
+                        cy.contains('p', tarefa.name)
+                            .should('have.css', 'text-decoration-line', 'line-through')
+                    })
+                })
+            })
         })
     })
 
-    context('exclusão', () => {
-        it('deve excluir uma tarefa', () => {
-            const tarefa = massaDados.tarefa_exclusao
-    
-            cy.excluirTarefaPelaAPI(tarefa.name)
-            cy.cadastrarTarefaPelaAPI(tarefa)
+    context('Exclusão', () => {
+        context('Dado que eu esteja na página Home do site Mark L', () => {
+            beforeEach(() => {
+                cy.visit('/')
 
-            cy.visit('/')
+                const tarefa = massaDados.tarefa_exclusao
+                cy.excluirTarefaPelaAPI(tarefa.name)
+            })
 
-            cy.contains('p', tarefa.name)
-                .parent() 
-                .find('button[class*=ItemDelete]') 
-                .click()
+            context('E eu cadastre uma nova tarefa', () => {
+                beforeEach(() => {
+                    const tarefa = massaDados.tarefa_exclusao
+                    cy.cadastrarTarefaPelaAPI(tarefa)
 
-            cy.contains('p', tarefa.name)
-                .should('not.exist')
+                    cy.reload()
+                })
+
+                context('Quando eu excluir a tarefa', () => {
+                    beforeEach(() => {
+                        const tarefa = massaDados.tarefa_exclusao
+
+                        cy.contains('p', tarefa.name)
+                            .parent()
+                            .find('button[class*=ItemDelete]')
+                            .click()
+                    })
+
+                    it('Então a tarefa excluída não deve ser apresentada em Created Tasks', () => {
+                        const tarefa = massaDados.tarefa_exclusao
+
+                        cy.contains('p', tarefa.name)
+                            .should('not.exist')
+                    })
+                })
+            })
         })
     })
 })
