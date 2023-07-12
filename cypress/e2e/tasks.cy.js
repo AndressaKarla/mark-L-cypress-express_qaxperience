@@ -99,6 +99,8 @@ describe('Tarefas', () => {
                 beforeEach(() => {
                     const tarefa = massaDados.tarefa_atualizacao
                     cy.cadastrarTarefaPelaAPI(tarefa)
+
+                    cy.reload()
                 })
 
                 context('Quando eu concluir a tarefa', () => {
@@ -106,7 +108,6 @@ describe('Tarefas', () => {
                         const tarefa = massaDados.tarefa_atualizacao
 
                         cy.contains('p', tarefa.name)
-                            .should('be.visible')
                             .parent()
                             .find('button[class*=ItemToggle]')
                             .click()
@@ -116,7 +117,6 @@ describe('Tarefas', () => {
                         const tarefa = massaDados.tarefa_atualizacao
 
                         cy.contains('p', tarefa.name)
-                            .should('be.visible')
                             .should('have.css', 'text-decoration-line', 'line-through')
                     })
                 })
