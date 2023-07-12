@@ -53,14 +53,13 @@ describe('Tarefas', () => {
                     cy.cadastrarTarefaPelaAPI(tarefa)
                 })
 
-
                 context('Quando eu tentar cadastrar uma tarefa duplicada', () => {
                     beforeEach(() => {
                         const tarefa = massaDados.tarefa_duplicada
                         cy.cadastrarTarefa(tarefa.name)
                     })
 
-                    it.only('Então deve ser apresentada uma mensagem de duplicidade', () => {
+                    it('Então deve ser apresentada uma mensagem de duplicidade', () => {
                         cy.get('.swal2-html-container')
                             .should('be.visible')
                             .should('have.text', 'Task already exists!')
@@ -69,11 +68,21 @@ describe('Tarefas', () => {
             })
         })
 
-        it('campo obrigatório', () => {
-            cy.cadastrarTarefa()
+        context('Dado que eu esteja na página Home do site Mark L', () => {
+            beforeEach(() => {
+                cy.visit('/')
+            })
 
-            const mensagemEsperada = 'This is a required field'
-            cy.validarCampoPropRequired(mensagemEsperada)
+            context('Quando eu tentar cadastrar uma nova tarefa sem informar o campo Add a new Task', () => {
+                beforeEach(() => {
+                    cy.cadastrarTarefa()
+                })
+
+                it.only('Então deve ser apresentada uma mensagem de obrigatoriedade', () => {
+                    const mensagemEsperada = 'This is a required field'
+                    cy.validarCampoPropRequired(mensagemEsperada)
+                })
+            })
         })
     })
 
