@@ -78,7 +78,7 @@ describe('Tarefas', () => {
                     cy.cadastrarTarefa()
                 })
 
-                it.only('Então deve ser apresentada uma mensagem de obrigatoriedade', () => {
+                it('Então deve ser apresentada uma mensagem de obrigatoriedade', () => {
                     const mensagemEsperada = 'This is a required field'
                     cy.validarCampoPropRequired(mensagemEsperada)
                 })
@@ -87,21 +87,38 @@ describe('Tarefas', () => {
     })
 
     context('Atualização', () => {
-        it('deve concluir uma tarefa', () => {
-            const tarefa = massaDados.tarefa_atualizacao
+        context('Dado que eu esteja na página Home do site Mark L', () => {
+            beforeEach(() => {
+                cy.visit('/')
 
-            cy.excluirTarefaPelaAPI(tarefa.name)
-            cy.cadastrarTarefaPelaAPI(tarefa)
+                const tarefa = massaDados.tarefa_atualizacao
+                cy.excluirTarefaPelaAPI(tarefa.name)
+            })
 
-            cy.visit('/')
+            context('E eu cadastre uma nova tarefa', () => {
+                beforeEach(() => {
+                    const tarefa = massaDados.tarefa_atualizacao
+                    cy.cadastrarTarefaPelaAPI(tarefa)
+                })
 
-            cy.contains('p', tarefa.name)
-                .parent()
-                .find('button[class*=ItemToggle]')
-                .click()
+                context('Quando eu concluir a tarefa', () => {
+                    beforeEach(() => {
+                        const tarefa = massaDados.tarefa_atualizacao
 
-            cy.contains('p', tarefa.name)
-                .should('have.css', 'text-decoration-line', 'line-through')
+                        cy.contains('p', tarefa.name)
+                            .parent()
+                            .find('button[class*=ItemToggle]')
+                            .click()
+                    })
+
+                    it.only('Então a tarefa cadastrada deve deve ser apresentada como concluída', () => {
+                        const tarefa = massaDados.tarefa_atualizacao
+
+                        cy.contains('p', tarefa.name)
+                            .should('have.css', 'text-decoration-line', 'line-through')
+                    })
+                })
+            })
         })
     })
 
