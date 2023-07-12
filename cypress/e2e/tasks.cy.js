@@ -5,7 +5,7 @@
  * Feature: Tarefas
  *   Como um usuário do site Mark L
  *   Quero executar alguns casos de testes 
- *   Para validar a feature de tarefas
+ *   Para validar a feature Tarefas
  */
 
 describe('Tarefas', () => {
@@ -32,7 +32,7 @@ describe('Tarefas', () => {
                 })
 
 
-                it('Então a nova tarefa cadastrada deve deve ser apresentada em "Created Tasks"', () => {
+                it('Então a nova tarefa cadastrada deve ser apresentada em Created Tasks', () => {
                     cy.contains('main div p', nomeTarefa) // ou main > div > p
                         .should('be.visible')
                 })
@@ -113,7 +113,7 @@ describe('Tarefas', () => {
                             .click()
                     })
 
-                    it.only('Então a tarefa cadastrada deve deve ser apresentada como concluída', () => {
+                    it('Então a tarefa cadastrada deve ser apresentada como concluída', () => {
                         const tarefa = massaDados.tarefa_atualizacao
 
                         cy.contains('p', tarefa.name)
@@ -125,21 +125,40 @@ describe('Tarefas', () => {
     })
 
     context('Exclusão', () => {
-        it('deve excluir uma tarefa', () => {
-            const tarefa = massaDados.tarefa_exclusao
+        context('Dado que eu esteja na página Home do site Mark L', () => {
+            beforeEach(() => {
+                cy.visit('/')
 
-            cy.excluirTarefaPelaAPI(tarefa.name)
-            cy.cadastrarTarefaPelaAPI(tarefa)
+                const tarefa = massaDados.tarefa_exclusao
+                cy.excluirTarefaPelaAPI(tarefa.name)
+            })
 
-            cy.visit('/')
+            context('E eu cadastre uma nova tarefa', () => {
+                beforeEach(() => {
+                    const tarefa = massaDados.tarefa_exclusao
+                    cy.cadastrarTarefaPelaAPI(tarefa)
 
-            cy.contains('p', tarefa.name)
-                .parent()
-                .find('button[class*=ItemDelete]')
-                .click()
+                    cy.reload()
+                })
 
-            cy.contains('p', tarefa.name)
-                .should('not.exist')
+                context('Quando eu excluir a tarefa', () => {
+                    beforeEach(() => {
+                        const tarefa = massaDados.tarefa_exclusao
+
+                        cy.contains('p', tarefa.name)
+                            .parent()
+                            .find('button[class*=ItemDelete]')
+                            .click()
+                    })
+
+                    it('Então a tarefa excluída não deve ser apresentada em Created Tasks', () => {
+                        const tarefa = massaDados.tarefa_exclusao
+
+                        cy.contains('p', tarefa.name)
+                            .should('not.exist')
+                    })
+                })
+            })
         })
     })
 })
