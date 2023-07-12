@@ -105,9 +105,8 @@ describe('Tarefas', () => {
                     beforeEach(() => {
                         const tarefa = massaDados.tarefa_atualizacao
 
-                        cy.wait(1000)
-
                         cy.contains('p', tarefa.name)
+                            .should('be.visible')
                             .parent()
                             .find('button[class*=ItemToggle]')
                             .click()
@@ -117,6 +116,7 @@ describe('Tarefas', () => {
                         const tarefa = massaDados.tarefa_atualizacao
 
                         cy.contains('p', tarefa.name)
+                            .should('be.visible')
                             .should('have.css', 'text-decoration-line', 'line-through')
                     })
                 })
