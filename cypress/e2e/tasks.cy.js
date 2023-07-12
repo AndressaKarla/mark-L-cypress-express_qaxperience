@@ -105,6 +105,8 @@ describe('Tarefas', () => {
                     beforeEach(() => {
                         const tarefa = massaDados.tarefa_atualizacao
 
+                        cy.wait(1000)
+
                         cy.contains('p', tarefa.name)
                             .parent()
                             .find('button[class*=ItemToggle]')
