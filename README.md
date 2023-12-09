@@ -1,5 +1,5 @@
 ---
-# :test_tube: Projeto de Testes Automatizados E2E (Ponta a Ponta) | Javascript | Cypress | GitHub Actions :test_tube:
+# Projeto de Testes Automatizados E2E (Ponta a Ponta) | Javascript | Cypress | GitHub Actions :test_tube:
 ---
 # :information_source: Introdução 
 Esse projeto "mark-L-cypress-express_qaxperience" é executado em um ambiente de desenvolvimento local nas aplicações "Mark L" de Gerenciamento de Tarefas Web e API  desenvolvidas pelo [Fernando Papito](https://www.linkedin.com/in/papitoio/) nos cursos da [QAxperience](https://www.qaxperience.com/).
@@ -38,7 +38,7 @@ Esse projeto "mark-L-cypress-express_qaxperience" é executado em um ambiente de
 
 
 ---
-# :warning: Antes de clonar ou executar esse projeto, é necessário seguir as instruções abaixo :point_down:
+# Antes de clonar ou executar esse projeto, é necessário seguir as instruções abaixo :point_down:
 
 ## :hammer_and_wrench: Janela do "Windows Explorer", criar uma pasta "tools"
 - Abrir uma janela do "Windows Explorer"
@@ -289,7 +289,7 @@ git update-index --assume-unchanged "./apps/api/src/database/database.sqlite-wal
 - Fechar esse cmder
 
 ---
-# :female_detective: Verificar os resultados das execuções dos testes automatizados e2e (ponta a ponta) :male_detective:
+# Verificar os resultados das execuções dos testes automatizados e2e (ponta a ponta) :female_detective:
 
 ## :bookmark_tabs: Abrir o VS Code diretamente na pasta do projeto "mark-L-cypress-express_qaxperience"
 - Abrir uma janela do "Windows Explorer"
